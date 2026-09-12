@@ -13,7 +13,7 @@ This repository is a **lookbook**: a public archive of interface studies. Reader
 - Do not vendor Untitled UI React **PRO** files. The OSS repo and starter kit are MIT; PRO is separately licensed.
 - Tailwind archive lives at `/tailwind`. Demos go in `src/tailwind/demos/` and import from `@untitled-starter`. Untitled UI aesthetics stay inside `PreviewFrame`.
 - Never illegally copy or embed commercial font files. Identify the font, TODO it, use the closest legal fallback.
-- Ship GitHub **project** Pages (`https://<user>.github.io/<repo>/`, `BASE_PATH=/<repo>/`). Do not add a `CNAME` or assume `labs.elliotrylands.com` until the user has set that up.
+- Ship GitHub **project** Pages (`https://elliot-rylands.github.io/lookbook/`, `BASE_PATH=/lookbook/`). Do not add a `CNAME` or assume `labs.elliotrylands.com` until the user has set that up.
 
 ## Adding a study from Figma
 

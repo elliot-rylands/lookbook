@@ -61,7 +61,7 @@ function untitledUiVendorAlias(): Plugin {
 }
 
 export default defineConfig({
-  // Project Pages: Actions sets BASE_PATH=/<repo>/. Local and a future
+  // Project Pages: Actions sets BASE_PATH=/lookbook/. Local and a future
   // custom-domain cutover use '/'. Do not commit a CNAME until that cutover.
   base: process.env.BASE_PATH || '/',
   plugins: [react(), tailwindcss(), untitledUiVendorAlias(), githubPagesSpaFallback()],

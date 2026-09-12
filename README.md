@@ -117,10 +117,10 @@ See [vendor/README.md](./vendor/README.md).
 This ships as a **GitHub project site**. The live URL is:
 
 ```
-https://<user>.github.io/<repo>/
+https://elliot-rylands.github.io/lookbook/
 ```
 
-Vite `base` in production is `/<repo>/` so CSS/JS resolve under that path. The Actions workflow sets `BASE_PATH=/<repo-name>/`. Local `npm run dev` keeps `base: '/'`.
+Vite `base` in production is `/lookbook/` so CSS/JS resolve on that path. The Actions workflow sets `BASE_PATH=/lookbook/`. Local `npm run dev` keeps `base: '/'`.
 
 There is **no `CNAME` in this repo** and no custom domain assumed.
 
@@ -131,7 +131,7 @@ There is **no `CNAME` in this repo** and no custom domain assumed.
 3. **Source**: GitHub Actions (not “Deploy from a branch”).
 4. Workflow [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) builds the app and deploys `dist/`.
 5. The build copies `index.html` → `dist/404.html` so `/`, `/components/:slug`, `/tailwind`, and `/tailwind/components/:slug` reload as a SPA. The workflow checks out submodules so the starter kit is present.
-6. After the first green **Deploy GitHub Pages** run, open `https://<user>.github.io/<repo>/`.
+6. After the first green **Deploy GitHub Pages** run, open `https://elliot-rylands.github.io/lookbook/`.
 
 The workflow also sets `VITE_GITHUB_REPO` so detail pages can link to source.
 
@@ -142,9 +142,9 @@ Not configured. When you want something like `labs.elliotrylands.com`:
 1. In GoDaddy, add a **CNAME**: host `labs` → `<user>.github.io`.
 2. Add a repo `CNAME` file containing `labs.elliotrylands.com`, or set that hostname under **Settings → Pages** (GitHub writes the file).
 3. Enable the custom domain in Pages and wait for DNS + TLS.
-4. Switch the workflow `BASE_PATH` to `/` and redeploy — a custom domain is served from the hostname root, not `/<repo>/`.
+4. Switch the workflow `BASE_PATH` to `/` and redeploy — a custom domain is served from the hostname root, not `/lookbook/`.
 
-Until then, keep project Pages and `BASE_PATH=/<repo>/`.
+Until then, keep project Pages and `BASE_PATH=/lookbook/`.
 
 ## Scripts
 

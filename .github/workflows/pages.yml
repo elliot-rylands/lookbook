@@ -1,5 +1,5 @@
-# Project Pages: https://<user>.github.io/<repo>/
-# BASE_PATH is /<repo>/ so Vite assets resolve on that path.
+# Project Pages: https://elliot-rylands.github.io/lookbook/
+# BASE_PATH is /lookbook/ so Vite assets resolve on that path.
 # Do not add a repo CNAME or set BASE_PATH=/ until a custom domain is actually configured.
 name: Deploy GitHub Pages
 
@@ -37,7 +37,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          BASE_PATH: /${{ github.event.repository.name }}/
+          BASE_PATH: /lookbook/
           VITE_GITHUB_REPO: ${{ github.repository }}
           VITE_GITHUB_BRANCH: main
       - name: Upload Pages artifact
