@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-lb-ink: #16150f;
+  --color-lb-ink-soft: #3c3a33;
+  --color-lb-muted: #7a756a;
+  --color-lb-line: #d8d2c4;
+  --color-lb-paper: #f4f0e7;
+  --color-lb-paper-2: #ebe6da;
+  --color-lb-white: #faf8f3;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-lb-paper);
+  color: var(--color-lb-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #16150f;
+  color: #f4f0e7;
+}
+
+.lb-shell {
+  min-height: 100dvh;
+  background: var(--color-lb-paper);
+  color: var(--color-lb-ink);
+}
+
+.lb-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.lb-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lb-muted);
+}
+
+.lb-preview-isolate {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: #111;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lb-hairline {
+  background: var(--color-lb-line);
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
