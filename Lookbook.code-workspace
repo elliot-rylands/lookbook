@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "name": "Lookbook",
+      "path": ".",
+      "settings": {
+        "files.exclude": {
+          "vendor/untitledui-nextjs-starter-kit": true
+        }
+      }
+    },
+    {
+      "name": "Untitled UI",
+      "path": "vendor/untitledui-nextjs-starter-kit"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "vendor/untitledui-nextjs-starter-kit": true
+    }
+  }
+}

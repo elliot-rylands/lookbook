@@ -2,6 +2,8 @@
 
 This repository is a **lookbook**: a public archive of interface studies. Readers expect a high-end editorial index (Layers / Mobbin / Linear), not Storybook and not a dashboard kit.
 
+Open [`Lookbook.code-workspace`](./Lookbook.code-workspace) in Cursor (**File → Open Workspace from File**). The sidebar splits **Lookbook** and **Untitled UI**. Keep them separate — see `.cursor/rules/archives.mdc`.
+
 ## Non-negotiables
 
 - Keep lookbook chrome (`src/components/ui`, `src/components/lookbook`, `--color-lb-*`) independent of any study.

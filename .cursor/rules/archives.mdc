@@ -1,0 +1,17 @@
+---
+description: Keep Elliot’s lookbook studies separate from Untitled UI
+alwaysApply: true
+---
+
+# Lookbook vs Untitled UI
+
+This repo is **elliot-rylands/lookbook**. Two archives, two trees.
+
+- **Own studies** live only in `src/library/`. New lookbook work goes there (`<category>/<Name>/` with `metadata.ts`).
+- **Untitled specimens** live only in `src/tailwind/demos/`. They import `@untitled-starter/...`. Do not copy starter sources into those files.
+- Do **not** flatten Untitled UI into `src/library/` or anywhere else under `src/`.
+- Do **not** edit or vendor Untitled UI **PRO**.
+- Do **not** run `npx untitledui@latest init`.
+- `vendor/untitledui-nextjs-starter-kit` is the upstream Untitled repo (git submodule). Update the submodule. Do not rewrite it into `src/library`.
+
+Open `Lookbook.code-workspace` so the sidebar shows **Lookbook** and **Untitled UI** as separate roots. Do not exclude `src/library` or `src/tailwind`.

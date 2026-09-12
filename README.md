@@ -16,6 +16,11 @@ npm run build
 npm run preview
 ```
 
+## Open in Cursor
+
+Open [`Lookbook.code-workspace`](./Lookbook.code-workspace) via **File → Open Workspace from File**. The sidebar has two roots: **Lookbook** (this app — `src/library` and `src/tailwind` stay visible) and **Untitled UI** (the starter submodule). The starter is excluded from the Lookbook tree so it is not listed twice.
+
+
 ## Architecture
 
 ```
