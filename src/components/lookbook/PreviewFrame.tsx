@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { VIEWPORTS, type PreviewTheme, type ViewportId } from '@/components/lookbook/preview'
 import { cn } from '@/lib/cn'
 
+export type PreviewSkin = 'neutral' | 'untitled'
+
 type PreviewFrameProps = {
   children: ReactNode
   viewport?: ViewportId
@@ -11,6 +13,7 @@ type PreviewFrameProps = {
   className?: string
   minHeight?: number
   cropHeight?: number
+  skin?: PreviewSkin
 }
 
 export function PreviewFrame({
@@ -22,6 +25,7 @@ export function PreviewFrame({
   className,
   minHeight = 360,
   cropHeight,
+  skin = 'neutral',
 }: PreviewFrameProps) {
   const outerRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
@@ -69,7 +73,11 @@ export function PreviewFrame({
       >
         <div
           ref={stageRef}
-          className={cn('lb-preview-isolate', theme === 'dark' && 'dark')}
+          className={cn(
+            'lb-preview-isolate',
+            theme === 'dark' && 'dark dark-mode',
+            skin === 'untitled' && 'uu-preview',
+          )}
           style={{
             width: targetWidth ?? '100%',
             transform: `scale(${scale})`,

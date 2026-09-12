@@ -1,0 +1,3 @@
+[submodule "vendor/untitledui-nextjs-starter-kit"]
+	path = vendor/untitledui-nextjs-starter-kit
+	url = https://github.com/untitleduico/untitledui-nextjs-starter-kit.git

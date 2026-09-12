@@ -1,6 +1,6 @@
 import { ArchiveComponentPage } from '@/pages/ArchiveComponentPage'
 import { archives } from '@/registry/archives'
 
-export function ComponentPage() {
-  return <ArchiveComponentPage archive={archives.lookbook} />
+export function TailwindComponentPage() {
+  return <ArchiveComponentPage archive={archives.tailwind} />
 }

@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 vendor/untitled-ui/node_modules
+vendor/untitledui-nextjs-starter-kit/node_modules
 dist-ssr
 *.local
 

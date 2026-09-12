@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { PreviewFrame } from '@/components/lookbook/PreviewFrame'
+import { PreviewFrame, type PreviewSkin } from '@/components/lookbook/PreviewFrame'
 import { Tag } from '@/components/ui/Tag'
 import { categoryLabel } from '@/data/categories'
 import { formatDate } from '@/lib/format'
@@ -9,12 +9,26 @@ import type { LibraryEntry } from '@/registry/types'
 type ComponentCardProps = {
   entry: LibraryEntry
   layout?: 'grid' | 'list'
+  basePath?: string
+  skin?: PreviewSkin
 }
 
-export function ComponentCard({ entry, layout = 'grid' }: ComponentCardProps) {
+export function ComponentCard({
+  entry,
+  layout = 'grid',
+  basePath = '',
+  skin = 'neutral',
+}: ComponentCardProps) {
   const { metadata, Component } = entry
+  const href = `${basePath}/components/${metadata.slug}`
   const preview = (
-    <PreviewFrame viewport="desktop" interactive={false} minHeight={220} cropHeight={220}>
+    <PreviewFrame
+      viewport="desktop"
+      interactive={false}
+      minHeight={220}
+      cropHeight={220}
+      skin={skin}
+    >
       <Component />
     </PreviewFrame>
   )
@@ -22,7 +36,7 @@ export function ComponentCard({ entry, layout = 'grid' }: ComponentCardProps) {
   if (layout === 'list') {
     return (
       <Link
-        to={`/components/${metadata.slug}`}
+        to={href}
         className="group grid grid-cols-1 border-t border-lb-line py-6 md:grid-cols-[280px_1fr] md:gap-10"
       >
         <div className="overflow-hidden border border-lb-line bg-lb-paper-2">{preview}</div>
@@ -51,7 +65,7 @@ export function ComponentCard({ entry, layout = 'grid' }: ComponentCardProps) {
   }
 
   return (
-    <Link to={`/components/${metadata.slug}`} className={cn('group flex flex-col')}>
+    <Link to={href} className={cn('group flex flex-col')}>
       <div className="overflow-hidden border border-lb-line bg-lb-paper-2">{preview}</div>
       <div className="pt-4">
         <p className="lb-meta">{categoryLabel[metadata.category]}</p>

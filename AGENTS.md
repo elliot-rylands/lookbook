@@ -10,7 +10,8 @@ This repository is a **lookbook**: a public archive of interface studies. Reader
 - Do not add auth, a database, or extra services.
 - Do not run `npx untitledui@latest init`.
 - Do not copy or flatten Untitled UI into `src/library/`.
-- Do not vendor Untitled UI React **PRO** files. The OSS repo is MIT; PRO is separately licensed.
+- Do not vendor Untitled UI React **PRO** files. The OSS repo and starter kit are MIT; PRO is separately licensed.
+- Tailwind archive lives at `/tailwind`. Demos go in `src/tailwind/demos/` and import from `@untitled-starter`. Untitled UI aesthetics stay inside `PreviewFrame`.
 - Never illegally copy or embed commercial font files. Identify the font, TODO it, use the closest legal fallback.
 - Ship GitHub **project** Pages (`https://<user>.github.io/<repo>/`, `BASE_PATH=/<repo>/`). Do not add a `CNAME` or assume `labs.elliotrylands.com` until the user has set that up.
 
@@ -39,24 +40,20 @@ Same folder contract as above. The filename must match the folder name.
 
 ## Untitled UI (reference only)
 
-Canonical path: `vendor/untitled-ui/`.
-
-The user pulls the OSS repo themselves:
+Canonical starter path: `vendor/untitledui-nextjs-starter-kit/` (submodule). Optional OSS repo: `vendor/untitled-ui/`.
 
 ```bash
-git submodule add https://github.com/untitleduico/react.git vendor/untitled-ui
+git submodule add https://github.com/untitleduico/untitledui-nextjs-starter-kit.git vendor/untitledui-nextjs-starter-kit
 git submodule update --init --recursive
 ```
 
-After it is present, studies may import:
+Do not run `npx untitledui@latest init`. Tailwind demos import:
 
 ```ts
-import { Button } from '@untitled-ui/components/base/buttons/button'
+import { Button } from '@untitled-starter/components/base/buttons/button'
 ```
 
-Vite/tsconfig alias: `@untitled-ui` → `vendor/untitled-ui`. Importers *inside* that tree keep Untitled UI’s own `@/` mapping. Lookbook `@/` still means `src/`.
-
-Install only the packages a given study actually imports, at the lookbook root. Do not treat Untitled UI as the shell theme. Do not commit PRO sources.
+Drop `src/tailwind/demos/<slug>.tsx` (`metadata` + default). Glob registers it. Lookbook `@/` still means `src/`. Starter-internal `@/` resolves to the starter `src/`. Do not treat Untitled UI as the shell theme. Do not commit PRO sources.
 
 ## Preview isolation
 

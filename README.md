@@ -31,11 +31,14 @@ src/
   data/categories.ts      Expandable list; unused categories stay quiet
   pages/Home.tsx
   pages/ComponentPage.tsx
+  tailwind/demos/         Specimens that import the starter — not copies of it
+  registry/tailwind.ts    glob of those demos
 vendor/
-  untitled-ui/            Untitled UI React OSS (git submodule — pull separately)
+  untitled-ui/            Untitled UI React OSS (optional submodule)
+  untitledui-nextjs-starter-kit/   Starter kit (submodule) — Tailwind archive source
 ```
 
-Routes: `/` and `/components/:slug`. GitHub Pages uses a copied `404.html` so those paths work as a SPA.
+Routes: `/`, `/components/:slug`, `/tailwind`, `/tailwind/components/:slug`. GitHub Pages uses a copied `404.html` so those paths work as a SPA. Header switcher: Lookbook / Tailwind.
 
 Each study is a real React component with its own visual language. Lookbook tokens (`--color-lb-*`, Instrument Serif / Sans) wrap the shell only. Previews render inside `PreviewFrame` so chrome styles do not leak in.
 
@@ -80,28 +83,34 @@ When the prompt is “Add the selected Figma component to the lookbook”:
 
 Full agent notes: [AGENTS.md](./AGENTS.md).
 
-## Untitled UI React (reference source)
+## Tailwind archive (Untitled UI starter)
 
-Untitled UI is **not** the lookbook theme. The shell stays independent. The OSS React repo is a reference you can import from *after* you pull it.
+A parallel archive at `/tailwind` and `/tailwind/components/:slug`. Same editorial chrome. Untitled UI colour and type stay inside `PreviewFrame`.
 
-From this repository root:
+Source: [untitledui-nextjs-starter-kit](https://github.com/untitleduico/untitledui-nextjs-starter-kit) as a git submodule at `vendor/untitledui-nextjs-starter-kit`. This repo already includes that pointer.
 
 ```bash
-git submodule add https://github.com/untitleduico/react.git vendor/untitled-ui
+git submodule add https://github.com/untitleduico/untitledui-nextjs-starter-kit.git vendor/untitledui-nextjs-starter-kit
 git submodule update --init --recursive
 ```
 
-Do **not** run `npx untitledui@latest init` (that scaffolds a different app). Do **not** copy or flatten Untitled UI into `src/library/`. Do **not** vendor Untitled UI React **PRO** files.
+Do **not** run `npx untitledui@latest init`. Do **not** flatten the starter into `src/library/`. Do **not** vendor Untitled UI React **PRO** files.
 
-The OSS repository is **MIT**. Untitled UI React **PRO** is separately licensed — keep PRO out of this tree.
+The starter and the OSS React repo are **MIT**. PRO is separately licensed.
 
-Once the submodule exists, lookbook studies may import:
+Add a Tailwind item: create `src/tailwind/demos/<slug>.tsx` that imports from `@untitled-starter/...`, exports `metadata` and a default specimen. The glob in `src/registry/tailwind.ts` picks it up.
 
 ```ts
-import { Button } from '@untitled-ui/components/base/buttons/button'
+import { Button } from '@untitled-starter/components/base/buttons/button'
 ```
 
-`@untitled-ui` → `vendor/untitled-ui` (their repo layout, intact). See [vendor/README.md](./vendor/README.md).
+Optional extra pointer for the raw OSS component repo (not required for Tailwind):
+
+```bash
+git submodule add https://github.com/untitleduico/react.git vendor/untitled-ui
+```
+
+See [vendor/README.md](./vendor/README.md).
 
 ## Enable GitHub Pages
 
@@ -121,7 +130,7 @@ There is **no `CNAME` in this repo** and no custom domain assumed.
 2. Repo **Settings → Pages**.
 3. **Source**: GitHub Actions (not “Deploy from a branch”).
 4. Workflow [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) builds the app and deploys `dist/`.
-5. The build copies `index.html` → `dist/404.html` so `/` and `/components/:slug` reload as a SPA.
+5. The build copies `index.html` → `dist/404.html` so `/`, `/components/:slug`, `/tailwind`, and `/tailwind/components/:slug` reload as a SPA. The workflow checks out submodules so the starter kit is present.
 6. After the first green **Deploy GitHub Pages** run, open `https://<user>.github.io/<repo>/`.
 
 The workflow also sets `VITE_GITHUB_REPO` so detail pages can link to source.

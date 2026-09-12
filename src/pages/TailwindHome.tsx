@@ -1,6 +1,6 @@
 import { ArchiveHome } from '@/pages/ArchiveHome'
 import { archives } from '@/registry/archives'
 
-export function Home() {
-  return <ArchiveHome archive={archives.lookbook} />
+export function TailwindHome() {
+  return <ArchiveHome archive={archives.tailwind} />
 }

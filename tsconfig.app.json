@@ -25,7 +25,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@untitled-ui/*": ["vendor/untitled-ui/*"]
+      "@untitled-ui/*": ["vendor/untitled-ui/*"],
+      "@untitled-starter/*": ["vendor/untitledui-nextjs-starter-kit/src/*"]
     }
   },
   "include": ["src"]

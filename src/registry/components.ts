@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import { categoryLabel } from '@/data/categories'
+import { sortEntries } from '@/registry/query'
 import type { ComponentMetadata, ComponentVariant, LibraryEntry } from '@/registry/types'
 
 type MetadataModule = { metadata: ComponentMetadata }
@@ -55,11 +56,7 @@ function loadRegistry(): LibraryEntry[] {
     })
   }
 
-  return entries.sort((a, b) => {
-    const byDate = b.metadata.dateAdded.localeCompare(a.metadata.dateAdded)
-    if (byDate !== 0) return byDate
-    return a.metadata.title.localeCompare(b.metadata.title)
-  })
+  return sortEntries(entries)
 }
 
 export const registry = loadRegistry()

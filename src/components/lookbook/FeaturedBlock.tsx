@@ -1,19 +1,27 @@
 import { Link } from 'react-router-dom'
-import { PreviewFrame } from '@/components/lookbook/PreviewFrame'
+import { PreviewFrame, type PreviewSkin } from '@/components/lookbook/PreviewFrame'
 import { categoryLabel } from '@/data/categories'
 import type { LibraryEntry } from '@/registry/types'
 
 type FeaturedBlockProps = {
   entry: LibraryEntry
+  basePath?: string
+  skin?: PreviewSkin
 }
 
-export function FeaturedBlock({ entry }: FeaturedBlockProps) {
+export function FeaturedBlock({ entry, basePath = '', skin = 'neutral' }: FeaturedBlockProps) {
   const { metadata, Component } = entry
 
   return (
-    <Link to={`/components/${metadata.slug}`} className="group block">
+    <Link to={`${basePath}/components/${metadata.slug}`} className="group block">
       <div className="overflow-hidden border border-lb-line">
-        <PreviewFrame viewport="desktop" interactive={false} minHeight={380} cropHeight={420}>
+        <PreviewFrame
+          viewport="desktop"
+          interactive={false}
+          minHeight={380}
+          cropHeight={420}
+          skin={skin}
+        >
           <Component />
         </PreviewFrame>
       </div>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
-  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-lb-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
+  --font-lb-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-lb-ink: #16150f;
   --color-lb-ink-soft: #3c3a33;
@@ -13,7 +13,18 @@
   --color-lb-white: #faf8f3;
 }
 
-@custom-variant dark (&:is(.dark *));
+@import "../vendor/untitledui-nextjs-starter-kit/src/styles/theme.css";
+@import "../vendor/untitledui-nextjs-starter-kit/src/styles/typography.css";
+
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-react-aria-components";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *, .dark-mode *));
+
+:root {
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
 
 html,
 body,
@@ -25,7 +36,7 @@ body {
   margin: 0;
   background: var(--color-lb-paper);
   color: var(--color-lb-ink);
-  font-family: var(--font-sans);
+  font-family: var(--font-lb-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -42,7 +53,7 @@ body {
 }
 
 .lb-display {
-  font-family: var(--font-display);
+  font-family: var(--font-lb-display);
   font-weight: 400;
 }
 
@@ -61,18 +72,25 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.uu-preview {
+  font-family: var(--font-body);
+  color: var(--color-text-primary, inherit);
+}
+
 .lb-hairline {
   background: var(--color-lb-line);
 }
 
-input,
-button,
-textarea,
-select {
+.lb-shell input,
+.lb-shell button,
+.lb-shell textarea,
+.lb-shell select {
   font: inherit;
 }
 
-button {
+.lb-shell > header button,
+.lb-shell > footer button,
+.lb-shell > main button {
   cursor: pointer;
 }
 
