@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import card1 from './assets/card-1.png'
 import card2 from './assets/card-2-active.png'
 import card3 from './assets/card-3.png'
@@ -62,25 +62,6 @@ function useStudyFonts() {
   }, [])
 }
 
-function useFrameScale() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [scale, setScale] = useState(1)
-
-  useEffect(() => {
-    const node = ref.current
-    if (!node) return
-    const sync = () => {
-      setScale(Math.min(1, node.clientWidth / FRAME_W))
-    }
-    sync()
-    const observer = new ResizeObserver(sync)
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
-
-  return { ref, scale }
-}
-
 function fillOffset(index: number) {
   const max = TRACK_W - FILL_W
   const last = cards.length - 1
@@ -96,7 +77,6 @@ function rowShift(index: number) {
 
 export default function OpeningStory() {
   useStudyFonts()
-  const { ref, scale } = useFrameScale()
   const labelId = useId()
   const [activeIndex, setActiveIndex] = useState(DEFAULT_INDEX)
   const last = cards.length - 1
@@ -109,17 +89,17 @@ export default function OpeningStory() {
   }
 
   return (
-    <div
-      ref={ref}
-      className="w-full overflow-hidden bg-white"
-      style={{ height: FRAME_H * scale }}
-    >
+    <div className="w-full bg-white" style={{ containerType: 'inline-size' }}>
+      <div
+        className="overflow-hidden bg-white"
+        style={{ height: `calc(${FRAME_H} * 100cqw / ${FRAME_W})` }}
+      >
       <div
         className="relative overflow-hidden bg-white"
         style={{
           width: FRAME_W,
           height: FRAME_H,
-          transform: `scale(${scale})`,
+          transform: `scale(calc(100cqw / ${FRAME_W}))`,
           transformOrigin: 'top left',
         }}
       >
@@ -306,6 +286,7 @@ export default function OpeningStory() {
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
