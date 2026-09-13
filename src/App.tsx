@@ -5,6 +5,7 @@ import { ComponentPage } from '@/pages/ComponentPage'
 import { Home } from '@/pages/Home'
 import { NotFound } from '@/pages/NotFound'
 import { OpeningStoryFull } from '@/pages/OpeningStoryFull'
+import { StudyFull } from '@/pages/StudyFull'
 import { TailwindComponentPage } from '@/pages/TailwindComponentPage'
 import { TailwindHome } from '@/pages/TailwindHome'
 
@@ -26,6 +27,8 @@ export default function App() {
       <Routes>
         <Route path="/full/opening-story" element={<OpeningStoryFull />} />
         <Route path="/components/opening-story/full" element={<OpeningStoryFull />} />
+        <Route path="/full/:slug" element={<StudyFull />} />
+        <Route path="/components/:slug/full" element={<StudyFull />} />
         <Route element={<LookbookChrome />}>
           <Route path="/" element={<Home />} />
           <Route path="/components/:slug" element={<ComponentPage />} />

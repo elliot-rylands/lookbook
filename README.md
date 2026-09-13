@@ -43,7 +43,7 @@ vendor/
   untitledui-nextjs-starter-kit/   Starter kit (submodule) — Tailwind archive source
 ```
 
-Routes: `/`, `/components/:slug`, `/tailwind`, `/tailwind/components/:slug`. Opening Story also has a chrome-free full-screen route at `/full/opening-story` (alias `/components/opening-story/full`). GitHub Pages uses a copied `404.html` so those paths work as a SPA. Header switcher: Lookbook / Tailwind.
+Routes: `/`, `/components/:slug`, `/tailwind`, `/tailwind/components/:slug`. Chrome-free study routes: `/full/:slug` and `/components/:slug/full` (Opening Story and Jane AI nudges). GitHub Pages uses a copied `404.html` so those paths work as a SPA. Header switcher: Lookbook / Tailwind.
 
 Each study is a real React component. Lookbook tokens (`--color-lb-*`, Inter for UI, Merriweather for headings) wrap the shell only — loaded from Google Fonts, not embedded files. Previews render inside `PreviewFrame` so chrome styles do not leak in. Untitled UI keeps its own type inside those frames.
 
@@ -135,7 +135,7 @@ There is **no `CNAME` in this repo** and no custom domain assumed.
 2. Repo **Settings → Pages**.
 3. **Source**: GitHub Actions (not “Deploy from a branch”).
 4. Workflow [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) builds the app and deploys `dist/`.
-5. The build copies `index.html` → `dist/404.html` so `/`, `/components/:slug`, `/full/opening-story`, `/components/opening-story/full`, `/tailwind`, and `/tailwind/components/:slug` reload as a SPA. The workflow checks out submodules so the starter kit is present.
+5. The build copies `index.html` → `dist/404.html` so `/`, `/components/:slug`, `/full/:slug`, `/components/:slug/full`, `/tailwind`, and `/tailwind/components/:slug` reload as a SPA. The workflow checks out submodules so the starter kit is present.
 6. After the first green **Deploy GitHub Pages** run, open `https://elliot-rylands.github.io/lookbook/`.
 
 The workflow also sets `VITE_GITHUB_REPO` so detail pages can link to source.
