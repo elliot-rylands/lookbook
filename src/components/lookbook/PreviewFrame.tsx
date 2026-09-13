@@ -32,8 +32,7 @@ export function PreviewFrame({
   const [scale, setScale] = useState(1)
   const [contentHeight, setContentHeight] = useState(minHeight)
   const targetWidth = VIEWPORTS[viewport].width
-  const background =
-    canvas ?? (theme === 'dark' ? '#12110e' : '#f7f4ec')
+  const background = canvas ?? (theme === 'dark' ? '#111111' : '#ffffff')
 
   useEffect(() => {
     const outer = outerRef.current

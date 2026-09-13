@@ -1,6 +1,6 @@
 # Agent notes
 
-This repository is a **lookbook**: a public archive of interface studies. Readers expect a high-end editorial index (Layers / Mobbin / Linear), not Storybook and not a dashboard kit.
+This repository is a **lookbook**: a public archive of interface studies. The Lookbook shell is bare — system sans, thin borders, little chrome. Not Storybook and not a dashboard kit.
 
 Open [`Lookbook.code-workspace`](./Lookbook.code-workspace) in Cursor (**File → Open Workspace from File**). The sidebar splits **Lookbook** and **Untitled UI**. Keep them separate — see `.cursor/rules/archives.mdc`.
 
@@ -63,4 +63,4 @@ Use `PreviewFrame` for every live preview. Studies set their own fonts and colou
 
 ## Taste
 
-Editorial, typography-led, spacious, muted chrome, strong previews. No generic dashboard templates, huge rounded cards, excessive gradients, or decorative animation.
+Lookbook chrome stays bare: system sans, thin borders, lots of air, almost no personality. Previews are the point. Studies can have their own language; the shell should not. No huge rounded cards, excessive gradients, or decorative animation.

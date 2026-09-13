@@ -1,9 +1,8 @@
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-lb-line">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-5 py-8 text-[13px] text-lb-muted sm:flex-row sm:items-baseline sm:justify-between sm:px-8">
-        <p>Two archives — Lookbook studies and the Untitled UI starter as Tailwind.</p>
-        <p>Their theme stays in the preview. The chrome stays ours.</p>
+    <footer className="mt-20 border-t border-lb-line">
+      <div className="mx-auto max-w-[1100px] px-5 py-6 text-[13px] text-lb-muted sm:px-8">
+        <p>Lookbook studies and a Tailwind archive of the Untitled UI starter.</p>
       </div>
     </footer>
   )

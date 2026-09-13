@@ -9,10 +9,9 @@ export const archives: Record<ArchiveId, ArchiveDefinition> = {
     basePath: '',
     noun: 'studies',
     singular: 'study',
-    eyebrow: 'Living archive',
-    title: ['Interface', 'studies'],
-    intro:
-      'Collected fragments — navigation, booking, healthcare, and experiments. Not a design system. A reference you can open, inspect, and steal from.',
+    eyebrow: 'Archive',
+    title: ['Lookbook'],
+    intro: 'A plain index of interface studies. Previews first. Add a folder and it shows up.',
     entries: registry,
     previewSkin: 'neutral',
   },

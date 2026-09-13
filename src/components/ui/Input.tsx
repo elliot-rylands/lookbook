@@ -11,7 +11,7 @@ export function Input({ className, ref, ...props }: InputProps) {
       ref={ref}
       className={cn(
         'w-full bg-transparent text-lb-ink placeholder:text-lb-muted',
-        'border-0 border-b border-lb-line px-0 py-3 text-[17px] outline-none',
+        'border border-lb-line px-3 py-2 text-[14px] outline-none',
         'focus:border-lb-ink',
         className,
       )}

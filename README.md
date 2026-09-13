@@ -1,6 +1,6 @@
 # Lookbook
 
-A public interface archive — living studies you can open, preview, and copy from. Editorial chrome, isolated experiments. Not a design system, not Storybook.
+A public interface archive — studies you can open, preview, and copy from. Quiet chrome, isolated experiments. Not a design system, not Storybook.
 
 ## Run locally
 
@@ -45,7 +45,7 @@ vendor/
 
 Routes: `/`, `/components/:slug`, `/tailwind`, `/tailwind/components/:slug`. GitHub Pages uses a copied `404.html` so those paths work as a SPA. Header switcher: Lookbook / Tailwind.
 
-Each study is a real React component with its own visual language. Lookbook tokens (`--color-lb-*`, Instrument Serif / Sans) wrap the shell only. Previews render inside `PreviewFrame` so chrome styles do not leak in.
+Each study is a real React component. Lookbook tokens (`--color-lb-*`, system sans) wrap the shell only. Previews render inside `PreviewFrame` so chrome styles do not leak in.
 
 ### Metadata
 
@@ -90,7 +90,7 @@ Full agent notes: [AGENTS.md](./AGENTS.md).
 
 ## Tailwind archive (Untitled UI starter)
 
-A parallel archive at `/tailwind` and `/tailwind/components/:slug`. Same editorial chrome. Untitled UI colour and type stay inside `PreviewFrame`.
+A parallel archive at `/tailwind` and `/tailwind/components/:slug`. Same chrome. Untitled UI colour and type stay inside `PreviewFrame`.
 
 Source: [untitledui-nextjs-starter-kit](https://github.com/untitleduico/untitledui-nextjs-starter-kit) as a git submodule at `vendor/untitledui-nextjs-starter-kit`. This repo already includes that pointer.
 

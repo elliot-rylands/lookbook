@@ -10,7 +10,7 @@ export function Button({ className, active, type = 'button', ...props }: ButtonP
     <button
       type={type}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-[2px] px-3 py-1.5 text-[13px] leading-none transition-colors',
+        'inline-flex items-center justify-center gap-2 px-2.5 py-1 text-[13px] leading-none',
         'border border-lb-line bg-transparent text-lb-ink-soft',
         'hover:border-lb-ink hover:text-lb-ink',
         active && 'border-lb-ink bg-lb-ink text-lb-paper hover:border-lb-ink hover:text-lb-paper',

@@ -37,7 +37,7 @@ export function ComponentCard({
     return (
       <Link
         to={href}
-        className="group grid grid-cols-1 border-t border-lb-line py-6 md:grid-cols-[280px_1fr] md:gap-10"
+        className="group grid grid-cols-1 border-t border-lb-line py-6 md:grid-cols-[260px_1fr] md:gap-8"
       >
         <div className="overflow-hidden border border-lb-line bg-lb-paper-2">{preview}</div>
         <div className="mt-4 md:mt-0">
@@ -46,13 +46,13 @@ export function ComponentCard({
             <span className="mx-2 text-lb-line">/</span>
             {formatDate(metadata.dateAdded)}
           </p>
-          <h3 className="lb-display mt-2 text-[32px] leading-none tracking-tight group-hover:underline group-hover:decoration-lb-line group-hover:underline-offset-4">
+          <h3 className="mt-1 text-[16px] font-medium group-hover:underline group-hover:underline-offset-4">
             {metadata.title}
           </h3>
-          <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-lb-ink-soft">
+          <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-lb-ink-soft">
             {metadata.description}
           </p>
-          <div className="mt-3 flex flex-wrap gap-1">
+          <div className="mt-2 flex flex-wrap gap-1">
             {metadata.tags.map((tag) => (
               <Tag key={tag} as="span">
                 {tag}
@@ -67,15 +67,15 @@ export function ComponentCard({
   return (
     <Link to={href} className={cn('group flex flex-col')}>
       <div className="overflow-hidden border border-lb-line bg-lb-paper-2">{preview}</div>
-      <div className="pt-4">
+      <div className="pt-3">
         <p className="lb-meta">{categoryLabel[metadata.category]}</p>
-        <h3 className="lb-display mt-1 text-[28px] leading-none tracking-tight group-hover:underline group-hover:decoration-lb-line group-hover:underline-offset-4">
+        <h3 className="mt-1 text-[15px] font-medium group-hover:underline group-hover:underline-offset-4">
           {metadata.title}
         </h3>
-        <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-lb-ink-soft">
+        <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-lb-ink-soft">
           {metadata.description}
         </p>
-        <div className="mt-3 flex flex-wrap gap-1">
+        <div className="mt-2 flex flex-wrap gap-1">
           {metadata.tags.slice(0, 3).map((tag) => (
             <Tag key={tag} as="span">
               {tag}

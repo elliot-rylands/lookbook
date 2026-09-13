@@ -25,14 +25,12 @@ export function FeaturedBlock({ entry, basePath = '', skin = 'neutral' }: Featur
           <Component />
         </PreviewFrame>
       </div>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
         <div>
           <p className="lb-meta">Featured · {categoryLabel[metadata.category]}</p>
-          <h3 className="lb-display mt-2 text-[40px] leading-none tracking-tight sm:text-[48px]">
-            {metadata.title}
-          </h3>
+          <h3 className="mt-1 text-[16px] font-medium">{metadata.title}</h3>
         </div>
-        <p className="max-w-md text-[15px] leading-relaxed text-lb-ink-soft">{metadata.description}</p>
+        <p className="max-w-md text-[13px] leading-relaxed text-lb-ink-soft">{metadata.description}</p>
       </div>
     </Link>
   )

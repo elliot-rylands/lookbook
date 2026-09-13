@@ -50,20 +50,16 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
   }
 
   return (
-    <main className="mx-auto max-w-[1280px] px-5 pb-8 sm:px-8">
-      <section className="border-b border-lb-line py-14 sm:py-20">
+    <main className="mx-auto max-w-[1100px] px-5 pb-8 sm:px-8">
+      <section className="py-10 sm:py-12">
         <p className="lb-meta">{archive.eyebrow}</p>
-        <h1 className="lb-display mt-4 max-w-4xl text-[52px] leading-[0.92] tracking-[-0.02em] sm:text-[80px]">
-          {archive.title[0]}
-          <br />
-          {archive.title[1]}
+        <h1 className="mt-2 text-[22px] font-medium tracking-tight">
+          {archive.title.filter(Boolean).join(' ')}
         </h1>
-        <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-lb-ink-soft sm:text-[17px]">
-          {archive.intro}
-        </p>
+        <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-lb-ink-soft">{archive.intro}</p>
       </section>
 
-      <section className="grid gap-10 border-b border-lb-line py-10 lg:grid-cols-[1fr_220px]">
+      <section className="grid gap-8 border-t border-lb-line py-8 lg:grid-cols-[1fr_200px]">
         <SearchField value={q} onChange={(value) => patch({ q: value || undefined })} />
         <div className="flex items-end justify-between gap-4 lg:justify-end">
           <p className="text-[13px] text-lb-muted tabular-nums">
@@ -73,7 +69,7 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
         </div>
       </section>
 
-      <section className="grid gap-8 py-8 md:grid-cols-2">
+      <section className="grid gap-8 pb-8 md:grid-cols-2">
         <CategoryFilter
           categories={categories}
           value={category}
@@ -83,15 +79,15 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
       </section>
 
       {!filtering && featured && (
-        <section className="border-t border-lb-line py-12">
+        <section className="border-t border-lb-line py-10">
           <FeaturedBlock entry={featured} basePath={basePath} skin={previewSkin} />
         </section>
       )}
 
       {!filtering && recent.length > 0 && (
-        <section className="border-t border-lb-line py-12">
-          <p className="lb-meta">Recently added</p>
-          <div className="mt-6 grid gap-10 md:grid-cols-3">
+        <section className="border-t border-lb-line py-10">
+          <p className="lb-meta">Recent</p>
+          <div className="mt-4 grid gap-8 md:grid-cols-3">
             {recent.map((entry) => (
               <ComponentCard
                 key={entry.metadata.slug}
@@ -104,7 +100,7 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
         </section>
       )}
 
-      <section className="border-t border-lb-line py-12">
+      <section className="border-t border-lb-line py-10">
         <p className="lb-meta">{filtering ? 'Results' : `All ${archive.noun}`}</p>
         {results.length === 0 ? (
           <EmptyResults onClear={() => setParams({}, { replace: true })} />
@@ -121,7 +117,7 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
             ))}
           </div>
         ) : (
-          <div className="mt-6 grid gap-x-8 gap-y-12 sm:grid-cols-2">
+          <div className="mt-4 grid gap-x-8 gap-y-10 sm:grid-cols-2">
             {results.map((entry) => (
               <ComponentCard
                 key={entry.metadata.slug}
