@@ -180,7 +180,7 @@ export default function OpeningStory() {
                         : `Practitioner ${index + 1}`
                     }
                     onClick={() => go(index)}
-                    className="relative block overflow-hidden rounded-[16px] bg-white p-0"
+                    className="relative block cursor-pointer overflow-hidden rounded-[16px] border-0 bg-white p-0"
                     style={{ width: CARD_W, height: CARD_H }}
                   >
                     <img
@@ -271,7 +271,7 @@ export default function OpeningStory() {
             aria-label="Previous practitioner"
             disabled={activeIndex === 0}
             onClick={() => go(activeIndex - 1)}
-            className="flex size-11 min-h-11 min-w-11 items-center justify-center rounded-lg border border-solid border-[#dcddde] bg-[rgba(255,255,255,0.15)] p-0 disabled:opacity-40"
+            className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border border-solid border-[#dcddde] bg-[rgba(255,255,255,0.15)] p-0 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <span className="flex size-6 items-center justify-center overflow-hidden">
               <img src={iconPrev} alt="" width={24} height={24} className="size-6" />
@@ -282,7 +282,7 @@ export default function OpeningStory() {
             aria-label="Next practitioner"
             disabled={activeIndex === last}
             onClick={() => go(activeIndex + 1)}
-            className="flex size-11 min-h-11 min-w-11 items-center justify-center rounded-lg bg-[#00c1ca] p-0 disabled:opacity-40"
+            className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border-0 bg-[#00c1ca] p-0 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <span className="flex size-6 items-center justify-center overflow-hidden">
               <img src={iconNext} alt="" width={24} height={24} className="size-6" />
