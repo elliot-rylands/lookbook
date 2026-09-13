@@ -6,11 +6,11 @@ export const metadata: ComponentMetadata = {
   category: 'heroes',
   tags: ['hero', 'carousel', 'jane', 'portfolio', 'ehs'],
   description:
-    'Portfolio hero from the 2024 Jane study: eyebrow, two-line title, overflow practitioner cards, progress, and prev/next.',
+    'Interactive Jane EHS hero carousel: overflow portraits, featured overlay, progress, prev/next, click-to-feature, and arrow keys.',
   dateAdded: '2026-09-13',
   featured: true,
   figmaUrl:
     'https://www.figma.com/design/w72QuEY2duBFrzBg5xI9mD/2024-Portfolio?node-id=2087-7119&m=dev',
   notes:
-    'Frame 2087:7119 only (1440×1008). Local card/icon files from the Figma handoff — no invented photos or icons. The lookbook Phone viewport is that same frame scaled into 390px, not a separate mobile comp. TODO: Fields (commercial Medium, 60/72 title and 24/32 name) is unavailable — fallback is Source Serif 4 (Google Fonts, weight 500). Do not use Merriweather on this study. TODO: Proxima Nova (commercial Semibold 14/20 and Regular 16/24) is unavailable — fallback is Source Sans 3 (Google Fonts, 600/400). Do not use Inter on this study. Progress fill matches Figma at the default card (22px inset, 106×5 on a 173×5 track).',
+    'Frame 2087:7119 (1440×1008). Six handoff portraits plus six extra Pexels portraits committed under assets/ (card-7.jpg–card-12.jpg). Only Michelle Jones is named — no invented staff directory. Keyboard: arrows / Home / End. Progress track is clickable and follows the featured card. Phone viewport is this frame scaled into 390px. TODO: Fields (commercial Medium) → Source Serif 4 500; do not use Merriweather. TODO: Proxima Nova → Source Sans 3 600/400; do not use Inter.',
 }
