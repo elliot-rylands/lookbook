@@ -28,7 +28,7 @@ export function FeaturedBlock({ entry, basePath = '', skin = 'neutral' }: Featur
       <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
         <div>
           <p className="lb-meta">Featured · {categoryLabel[metadata.category]}</p>
-          <h3 className="mt-1 text-[16px] font-medium">{metadata.title}</h3>
+          <h3 className="lb-display mt-1 text-[22px] leading-tight">{metadata.title}</h3>
         </div>
         <p className="max-w-md text-[13px] leading-relaxed text-lb-ink-soft">{metadata.description}</p>
       </div>

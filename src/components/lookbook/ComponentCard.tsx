@@ -46,7 +46,7 @@ export function ComponentCard({
             <span className="mx-2 text-lb-line">/</span>
             {formatDate(metadata.dateAdded)}
           </p>
-          <h3 className="mt-1 text-[16px] font-medium group-hover:underline group-hover:underline-offset-4">
+          <h3 className="lb-display mt-1 text-[20px] leading-tight group-hover:underline group-hover:underline-offset-4">
             {metadata.title}
           </h3>
           <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-lb-ink-soft">
@@ -69,7 +69,7 @@ export function ComponentCard({
       <div className="overflow-hidden border border-lb-line bg-lb-paper-2">{preview}</div>
       <div className="pt-3">
         <p className="lb-meta">{categoryLabel[metadata.category]}</p>
-        <h3 className="mt-1 text-[15px] font-medium group-hover:underline group-hover:underline-offset-4">
+        <h3 className="lb-display mt-1 text-[18px] leading-tight group-hover:underline group-hover:underline-offset-4">
           {metadata.title}
         </h3>
         <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-lb-ink-soft">

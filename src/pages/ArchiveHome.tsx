@@ -53,7 +53,7 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
     <main className="mx-auto max-w-[1100px] px-5 pb-8 sm:px-8">
       <section className="py-10 sm:py-12">
         <p className="lb-meta">{archive.eyebrow}</p>
-        <h1 className="mt-2 text-[22px] font-medium tracking-tight">
+        <h1 className="lb-display mt-2 text-[28px] leading-tight">
           {archive.title.filter(Boolean).join(' ')}
         </h1>
         <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-lb-ink-soft">{archive.intro}</p>
@@ -69,14 +69,16 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
         </div>
       </section>
 
-      <section className="grid gap-8 pb-8 md:grid-cols-2">
-        <CategoryFilter
-          categories={categories}
-          value={category}
-          onChange={(value) => patch({ category: value })}
-        />
-        <TagFilter tags={tags} value={tag} onChange={(value) => patch({ tag: value })} />
-      </section>
+      {(categories.length > 0 || tags.length > 0) && (
+        <section className="grid gap-8 pb-8 md:grid-cols-2">
+          <CategoryFilter
+            categories={categories}
+            value={category}
+            onChange={(value) => patch({ category: value })}
+          />
+          <TagFilter tags={tags} value={tag} onChange={(value) => patch({ tag: value })} />
+        </section>
+      )}
 
       {!filtering && featured && (
         <section className="border-t border-lb-line py-10">
@@ -103,7 +105,11 @@ export function ArchiveHome({ archive }: ArchiveHomeProps) {
       <section className="border-t border-lb-line py-10">
         <p className="lb-meta">{filtering ? 'Results' : `All ${archive.noun}`}</p>
         {results.length === 0 ? (
-          <EmptyResults onClear={() => setParams({}, { replace: true })} />
+          <EmptyResults
+            onClear={() => setParams({}, { replace: true })}
+            emptyArchive={entries.length === 0 && !filtering}
+            noun={archive.noun}
+          />
         ) : view === 'list' ? (
           <div className="mt-4">
             {results.map((entry) => (

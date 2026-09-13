@@ -63,4 +63,4 @@ Use `PreviewFrame` for every live preview. Studies set their own fonts and colou
 
 ## Taste
 
-Lookbook chrome stays bare: system sans, thin borders, lots of air, almost no personality. Previews are the point. Studies can have their own language; the shell should not. No huge rounded cards, excessive gradients, or decorative animation.
+Lookbook chrome stays bare: Inter for body/UI, Merriweather for headings (Google Fonts — never embed commercial font files), thin borders, lots of air. Previews are the point. Studies can have their own language; Untitled UI type stays inside `PreviewFrame`. No huge rounded cards, excessive gradients, or decorative animation.

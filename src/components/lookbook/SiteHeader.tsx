@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header className="border-b border-lb-line">
       <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-4 sm:px-8">
-        <Link to={archive.basePath || '/'} className="text-[14px] font-medium">
+        <Link to={archive.basePath || '/'} className="lb-display text-[18px] leading-none">
           {archive.label}
         </Link>
         <nav className="flex items-center gap-5 text-[13px] text-lb-muted">

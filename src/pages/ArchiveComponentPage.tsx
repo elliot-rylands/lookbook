@@ -39,7 +39,7 @@ export function ArchiveComponentPage({ archive }: ArchiveComponentPageProps) {
   if (!entry) {
     return (
       <main className="mx-auto max-w-[1100px] px-5 py-16 sm:px-8">
-        <p className="text-[18px] font-medium">Not in this archive.</p>
+        <p className="lb-display text-[22px] leading-tight">Not in this archive.</p>
         <Link
           to={indexTo}
           className="mt-4 inline-flex items-center gap-2 text-[13px] text-lb-muted hover:text-lb-ink"
@@ -70,7 +70,7 @@ export function ArchiveComponentPage({ archive }: ArchiveComponentPageProps) {
           <span className="mx-2 text-lb-line">/</span>
           {formatDate(metadata.dateAdded)}
         </p>
-        <h1 className="mt-2 text-[22px] font-medium tracking-tight">{metadata.title}</h1>
+        <h1 className="lb-display mt-2 text-[28px] leading-tight">{metadata.title}</h1>
         <p className="mt-3 text-[14px] leading-relaxed text-lb-ink-soft">{metadata.description}</p>
         <div className="mt-3 flex flex-wrap gap-1">
           {metadata.tags.map((item) => (

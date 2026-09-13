@@ -45,7 +45,7 @@ vendor/
 
 Routes: `/`, `/components/:slug`, `/tailwind`, `/tailwind/components/:slug`. GitHub Pages uses a copied `404.html` so those paths work as a SPA. Header switcher: Lookbook / Tailwind.
 
-Each study is a real React component. Lookbook tokens (`--color-lb-*`, system sans) wrap the shell only. Previews render inside `PreviewFrame` so chrome styles do not leak in.
+Each study is a real React component. Lookbook tokens (`--color-lb-*`, Inter for UI, Merriweather for headings) wrap the shell only — loaded from Google Fonts, not embedded files. Previews render inside `PreviewFrame` so chrome styles do not leak in. Untitled UI keeps its own type inside those frames.
 
 ### Metadata
 
