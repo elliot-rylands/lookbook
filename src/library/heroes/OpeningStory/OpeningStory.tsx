@@ -100,12 +100,13 @@ export default function OpeningStory({ fillViewport = false }: OpeningStoryProps
   const labelId = useId()
   const regionRef = useRef<HTMLDivElement>(null)
   const [offset, setOffset] = useState(0)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const atStart = offset === 0
   const atEnd = offset >= MAX_OFFSET
   const shift = -offset * CARD_STEP
-  const frameScale = fillViewport
-    ? `min(100vw / ${FRAME_W}, 100dvh / ${FRAME_H})`
-    : `calc(100cqw / ${FRAME_W})`
+  const previewScale = `calc(100cqw / ${FRAME_W}px)`
+  const viewportBoxWidth = `min(100vw, calc(100dvh * ${FRAME_W} / ${FRAME_H}))`
+  const viewportScale = `calc(${viewportBoxWidth} / ${FRAME_W}px)`
 
   useEffect(() => {
     if (!fillViewport) return
@@ -199,70 +200,81 @@ export default function OpeningStory({ fillViewport = false }: OpeningStoryProps
             transition: 'transform 480ms cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
-          {cards.map((card, index) => (
-            <li key={card.src} className="shrink-0">
-              <button
-                type="button"
-                tabIndex={-1}
-                aria-label={`${cardLabel(card, index)}. Advance carousel`}
-                onClick={() => nudge(1)}
-                className="group relative block cursor-pointer overflow-hidden rounded-[16px] border-0 bg-white p-0"
-                style={{ width: CARD_W, height: CARD_H }}
-              >
-                <img
-                  src={card.src}
-                  alt=""
-                  width={CARD_W}
-                  height={CARD_H}
-                  className="absolute inset-0 z-0 size-full rounded-[16px] object-cover"
-                />
-                <div
-                  className="absolute inset-0 z-10 flex flex-col items-start text-left text-white opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
-                  style={{
-                    backgroundImage: HOVER_GRADIENT,
-                    paddingLeft: 25,
-                    paddingTop: 203,
-                    paddingRight: 25,
-                    gap: 8,
-                  }}
-                >
-                  <p
-                    className="w-full translate-y-2 text-[14px] leading-5 transition-transform duration-300 ease-out group-hover:translate-y-0"
-                    style={{
-                      fontFamily: SANS,
-                      fontWeight: 600,
-                      letterSpacing: '0.2px',
-                    }}
+              {cards.map((card, index) => {
+                const revealed = hoveredIndex === index
+                return (
+                <li key={card.src} className="shrink-0">
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    aria-label={`${cardLabel(card, index)}. Advance carousel`}
+                    onClick={() => nudge(1)}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() =>
+                      setHoveredIndex((current) => (current === index ? null : current))
+                    }
+                    className="relative block cursor-pointer overflow-hidden rounded-[16px] border-0 bg-white p-0"
+                    style={{ width: CARD_W, height: CARD_H }}
                   >
-                    {FEATURED_ROLE}
-                  </p>
-                  {card.name ? (
-                    <p
-                      className="w-full translate-y-2 text-[24px] transition-transform duration-300 ease-out group-hover:translate-y-0"
+                    <img
+                      src={card.src}
+                      alt=""
+                      width={CARD_W}
+                      height={CARD_H}
+                      className="absolute inset-0 z-0 size-full rounded-[16px] object-cover"
+                    />
+                    <div
+                      className="absolute inset-0 z-10 flex flex-col items-start text-left text-white transition-opacity duration-300 ease-out"
                       style={{
-                        fontFamily: SERIF,
-                        fontWeight: 500,
-                        letterSpacing: '0.2px',
-                        lineHeight: '32px',
+                        backgroundImage: HOVER_GRADIENT,
+                        opacity: revealed ? 1 : 0,
+                        paddingLeft: 25,
+                        paddingTop: 203,
+                        paddingRight: 25,
+                        gap: 8,
                       }}
                     >
-                      {card.name}
-                    </p>
-                  ) : null}
-                  <p
-                    className="w-full translate-y-2 text-[16px] leading-6 transition-transform duration-300 ease-out group-hover:translate-y-0"
-                    style={{
-                      fontFamily: SANS,
-                      fontWeight: 400,
-                      letterSpacing: '0px',
-                    }}
-                  >
-                    {FEATURED_BODY}
-                  </p>
-                </div>
-              </button>
-            </li>
-          ))}
+                      <p
+                        className="w-full text-[14px] leading-5 transition-transform duration-300 ease-out"
+                        style={{
+                          fontFamily: SANS,
+                          fontWeight: 600,
+                          letterSpacing: '0.2px',
+                          transform: revealed ? 'translateY(0)' : 'translateY(8px)',
+                        }}
+                      >
+                        {FEATURED_ROLE}
+                      </p>
+                      {card.name ? (
+                        <p
+                          className="w-full text-[24px] transition-transform duration-300 ease-out"
+                          style={{
+                            fontFamily: SERIF,
+                            fontWeight: 500,
+                            letterSpacing: '0.2px',
+                            lineHeight: '32px',
+                            transform: revealed ? 'translateY(0)' : 'translateY(8px)',
+                          }}
+                        >
+                          {card.name}
+                        </p>
+                      ) : null}
+                      <p
+                        className="w-full text-[16px] leading-6 transition-transform duration-300 ease-out"
+                        style={{
+                          fontFamily: SANS,
+                          fontWeight: 400,
+                          letterSpacing: '0px',
+                          transform: revealed ? 'translateY(0)' : 'translateY(8px)',
+                        }}
+                      >
+                        {FEATURED_BODY}
+                      </p>
+                    </div>
+                  </button>
+                </li>
+                )
+              })}
         </ul>
       </div>
 
@@ -315,16 +327,24 @@ export default function OpeningStory({ fillViewport = false }: OpeningStoryProps
 
   if (fillViewport) {
     return (
-      <div className="relative h-dvh w-dvw overflow-hidden bg-white">
+      <div className="grid h-dvh w-dvw place-items-center overflow-hidden bg-white">
         <div
-          className="absolute left-1/2 top-1/2 origin-center"
+          className="relative overflow-hidden"
           style={{
-            width: FRAME_W,
-            height: FRAME_H,
-            transform: `translate(-50%, -50%) scale(${frameScale})`,
+            width: viewportBoxWidth,
+            height: `min(100dvh, calc(100vw * ${FRAME_H} / ${FRAME_W}))`,
           }}
         >
-          {canvas}
+          <div
+            className="absolute left-0 top-0 origin-top-left"
+            style={{
+              width: FRAME_W,
+              height: FRAME_H,
+              transform: `scale(${viewportScale})`,
+            }}
+          >
+            {canvas}
+          </div>
         </div>
       </div>
     )
@@ -343,7 +363,7 @@ export default function OpeningStory({ fillViewport = false }: OpeningStoryProps
         style={{
           width: FRAME_W,
           height: FRAME_H,
-          transform: `scale(${frameScale})`,
+          transform: `scale(${previewScale})`,
         }}
       >
         {canvas}
