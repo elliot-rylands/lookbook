@@ -19,32 +19,36 @@ const DEFAULT_INDEX = 1
 const TRACK_W = 173
 const FILL_W = 106
 const FILL_INSET_DEFAULT = 22
+const CONTROL_TOP = 835
+const CONTROL_RIGHT = 76
+const CONTROL_GAP = 37
 
 const SANS = '"Proxima Nova", "Source Sans 3", ui-sans-serif, sans-serif'
 const SERIF = 'Fields, "Source Serif 4", ui-serif, Georgia, serif'
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,500&display=swap'
 
+const FEATURED_ROLE = 'PRACTITIONER'
+const FEATURED_BODY =
+  'Lorem ipsum dolor sit amet consectetur. A semper aliquet bibendum tempus malesuada est sapien. Ipsum nam risus.'
+
 type Card = {
   src: string
-  role?: string
   name?: string
-  body?: string
 }
 
 const cards: Card[] = [
   { src: card1 },
-  {
-    src: card2,
-    role: 'PRACTITIONER',
-    name: 'Michelle Jones',
-    body: 'Lorem ipsum dolor sit amet consectetur. A semper aliquet bibendum tempus malesuada est sapien. Ipsum nam risus.',
-  },
+  { src: card2, name: 'Michelle Jones' },
   { src: card3 },
   { src: card4 },
   { src: card5 },
   { src: card6 },
 ]
+
+const ROW_WIDTH = cards.length * CARD_W + (cards.length - 1) * CARD_GAP
+const MIN_SHIFT = FRAME_W + Math.abs(ROW_LEFT) - (ROW_LEFT + ROW_WIDTH)
+const MAX_SHIFT = DEFAULT_INDEX * CARD_STEP
 
 function useStudyFonts() {
   useEffect(() => {
@@ -85,20 +89,31 @@ function fillOffset(index: number) {
   return Math.min(max, Math.max(0, FILL_INSET_DEFAULT + (index - DEFAULT_INDEX) * step))
 }
 
+function rowShift(index: number) {
+  const desired = -(index - DEFAULT_INDEX) * CARD_STEP
+  return Math.min(MAX_SHIFT, Math.max(MIN_SHIFT, desired))
+}
+
 export default function OpeningStory() {
   useStudyFonts()
   const { ref, scale } = useFrameScale()
   const labelId = useId()
   const [activeIndex, setActiveIndex] = useState(DEFAULT_INDEX)
   const last = cards.length - 1
-  const shift = -(activeIndex - DEFAULT_INDEX) * CARD_STEP
+  const shift = rowShift(activeIndex)
+  const atStart = activeIndex === 0
+  const atEnd = activeIndex === last
 
   function go(next: number) {
     setActiveIndex(Math.min(last, Math.max(0, next)))
   }
 
   return (
-    <div ref={ref} className="w-full bg-white" style={{ height: FRAME_H * scale }}>
+    <div
+      ref={ref}
+      className="w-full overflow-hidden bg-white"
+      style={{ height: FRAME_H * scale }}
+    >
       <div
         className="relative overflow-hidden bg-white"
         style={{
@@ -153,7 +168,7 @@ export default function OpeningStory() {
         </header>
 
         <div
-          className="absolute overflow-visible"
+          className="absolute"
           role="region"
           aria-roledescription="carousel"
           aria-labelledby={labelId}
@@ -176,7 +191,7 @@ export default function OpeningStory() {
                     aria-current={active ? 'true' : undefined}
                     aria-label={
                       card.name
-                        ? `${card.role ?? 'Practitioner'}, ${card.name}`
+                        ? `${FEATURED_ROLE}, ${card.name}`
                         : `Practitioner ${index + 1}`
                     }
                     onClick={() => go(index)}
@@ -188,30 +203,31 @@ export default function OpeningStory() {
                       alt=""
                       width={CARD_W}
                       height={CARD_H}
-                      className="absolute inset-0 size-full rounded-[16px] object-cover"
+                      className="absolute inset-0 z-0 size-full rounded-[16px] object-cover"
                     />
-                    {active && (
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 rounded-[16px]"
-                        style={{ background: 'rgba(0,0,0,0.64)' }}
-                      />
-                    )}
-                    {active && card.name && (
-                      <div
-                        className="absolute flex flex-col items-start text-left text-white"
-                        style={{ left: 25, top: 203, width: 304, gap: 8 }}
+                    <div
+                      className="absolute inset-0 z-10 flex flex-col items-start text-left text-white"
+                      style={{
+                        background: 'rgba(0,0,0,0.64)',
+                        opacity: active ? 1 : 0,
+                        paddingLeft: 25,
+                        paddingTop: 203,
+                        paddingRight: 25,
+                        gap: 8,
+                        transition: 'opacity 220ms ease',
+                      }}
+                    >
+                      <p
+                        className="w-full text-[14px] leading-5"
+                        style={{
+                          fontFamily: SANS,
+                          fontWeight: 600,
+                          letterSpacing: '0.2px',
+                        }}
                       >
-                        <p
-                          className="w-full text-[14px] leading-5"
-                          style={{
-                            fontFamily: SANS,
-                            fontWeight: 600,
-                            letterSpacing: '0.2px',
-                          }}
-                        >
-                          {card.role}
-                        </p>
+                        {FEATURED_ROLE}
+                      </p>
+                      {card.name ? (
                         <p
                           className="w-full text-[24px]"
                           style={{
@@ -223,18 +239,18 @@ export default function OpeningStory() {
                         >
                           {card.name}
                         </p>
-                        <p
-                          className="w-full text-[16px] leading-6"
-                          style={{
-                            fontFamily: SANS,
-                            fontWeight: 400,
-                            letterSpacing: '0px',
-                          }}
-                        >
-                          {card.body}
-                        </p>
-                      </div>
-                    )}
+                      ) : null}
+                      <p
+                        className="w-full text-[16px] leading-6"
+                        style={{
+                          fontFamily: SANS,
+                          fontWeight: 400,
+                          letterSpacing: '0px',
+                        }}
+                      >
+                        {FEATURED_BODY}
+                      </p>
+                    </div>
                   </button>
                 </li>
               )
@@ -243,51 +259,52 @@ export default function OpeningStory() {
         </div>
 
         <div
-          aria-hidden
-          className="absolute h-[5px] rounded-[100px]"
-          style={{
-            left: 1050,
-            top: 857,
-            width: TRACK_W,
-            background: '#04070a',
-            opacity: 0.08,
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute h-[5px] rounded-[100px]"
-          style={{
-            left: 1050 + fillOffset(activeIndex),
-            top: 857,
-            width: FILL_W,
-            background: '#027989',
-            transition: 'left 420ms cubic-bezier(0.22, 1, 0.36, 1)',
-          }}
-        />
-
-        <div className="absolute flex items-center" style={{ left: 1260, top: 835, gap: 16 }}>
-          <button
-            type="button"
-            aria-label="Previous practitioner"
-            disabled={activeIndex === 0}
-            onClick={() => go(activeIndex - 1)}
-            className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border border-solid border-[#dcddde] bg-[rgba(255,255,255,0.15)] p-0 disabled:cursor-not-allowed disabled:opacity-40"
+          className="absolute z-20 flex items-center"
+          style={{ top: CONTROL_TOP, right: CONTROL_RIGHT, gap: CONTROL_GAP }}
+        >
+          <div
+            aria-hidden
+            className="relative"
+            style={{ width: TRACK_W, height: 5 }}
           >
-            <span className="flex size-6 items-center justify-center overflow-hidden">
-              <img src={iconPrev} alt="" width={24} height={24} className="size-6" />
-            </span>
-          </button>
-          <button
-            type="button"
-            aria-label="Next practitioner"
-            disabled={activeIndex === last}
-            onClick={() => go(activeIndex + 1)}
-            className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border-0 bg-[#00c1ca] p-0 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <span className="flex size-6 items-center justify-center overflow-hidden">
-              <img src={iconNext} alt="" width={24} height={24} className="size-6" />
-            </span>
-          </button>
+            <div
+              className="absolute inset-0 rounded-[100px]"
+              style={{ background: '#04070a', opacity: 0.08 }}
+            />
+            <div
+              className="absolute top-0 h-full rounded-[100px]"
+              style={{
+                left: fillOffset(activeIndex),
+                width: FILL_W,
+                background: '#027989',
+                transition: 'left 420ms cubic-bezier(0.22, 1, 0.36, 1)',
+              }}
+            />
+          </div>
+          <div className="flex items-center" style={{ gap: 16 }}>
+            <button
+              type="button"
+              aria-label="Previous practitioner"
+              disabled={atStart}
+              onClick={() => go(activeIndex - 1)}
+              className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border border-solid border-[#dcddde] bg-[rgba(255,255,255,0.15)] p-0 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <span className="flex size-6 items-center justify-center overflow-hidden">
+                <img src={iconPrev} alt="" width={24} height={24} className="size-6 max-w-none" />
+              </span>
+            </button>
+            <button
+              type="button"
+              aria-label="Next practitioner"
+              disabled={atEnd}
+              onClick={() => go(activeIndex + 1)}
+              className="flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border-0 bg-[#00c1ca] p-0 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <span className="flex size-6 items-center justify-center overflow-hidden">
+                <img src={iconNext} alt="" width={24} height={24} className="size-6 max-w-none" />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
