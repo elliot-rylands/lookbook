@@ -11,6 +11,7 @@ export type ComponentMetadata = {
   dateAdded: string
   featured?: boolean
   notes?: string
+  fullscreenPath?: string
 }
 
 export type ComponentVariant = {

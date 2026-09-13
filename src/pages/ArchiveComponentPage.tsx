@@ -129,6 +129,14 @@ export function ArchiveComponentPage({ archive }: ArchiveComponentPageProps) {
                 Set <code className="text-lb-ink">VITE_GITHUB_REPO</code> to link this path.
               </span>
             )}
+            {metadata.fullscreenPath && (
+              <Link
+                to={metadata.fullscreenPath}
+                className="inline-flex items-center gap-1.5 text-lb-muted hover:text-lb-ink"
+              >
+                Full screen
+              </Link>
+            )}
             {metadata.figmaUrl && (
               <a
                 href={metadata.figmaUrl}
